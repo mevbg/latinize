@@ -1,0 +1,33 @@
+// ===================================================|
+// Mixins: COLOR SCHEME
+
+// -------------------------| Color scheme scope
+@mixin color-scheme-scope($scheme-name) {
+  @at-root {
+    :global(html.#{$scheme-name}) {
+      @content;
+    }
+  }
+
+  @media (prefers-color-scheme: #{$scheme-name}) {
+    @at-root {
+      :root {
+        @content;
+      }
+    }
+  }
+}
+
+// -------------------------| Set scheme scope
+@mixin set-color-scheme($scheme-name) {
+  // light / dark
+  $color-scheme: map-get($role-color-schemes, $scheme-name);
+
+  @for $scheme from 1 through length($color-scheme) {
+    $category-name: nth(nth($color-scheme, $scheme), 1);
+
+    @each $type in map-get($color-scheme, $category-name) {
+      --color-#{$category-name}-#{nth($type, 1)}: #{nth($type, 2)};
+    }
+  }
+}

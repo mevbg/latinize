@@ -1,0 +1,54 @@
+// ===================================================|
+// Data > Roles > TYPOGRAPHY
+
+// -------------------------| Font families
+$role-typo-font-families: (
+  'base': map-get($swatches-typo-font-families, 'Roboto')
+);
+
+// -------------------------| Font sizes hierarchy
+$role-typo-font-sizes: (
+  'base': (
+    's': map-get($swatches-typo-font-sizes, 'fs-16'),
+    'm': map-get($swatches-typo-font-sizes, 'fs-16'),
+    'l': map-get($swatches-typo-font-sizes, 'fs-20')
+  ),
+  'heading1': (
+    's': map-get($swatches-typo-font-sizes, 'fs-32'),
+    'm': map-get($swatches-typo-font-sizes, 'fs-32'),
+    'l': map-get($swatches-typo-font-sizes, 'fs-40')
+  ),
+  'heading2': (
+    's': map-get($swatches-typo-font-sizes, 'fs-20'),
+    'm': map-get($swatches-typo-font-sizes, 'fs-20'),
+    'l': map-get($swatches-typo-font-sizes, 'fs-24')
+  )
+);
+
+// -------------------------| Line-heights
+$role-typo-line-heights: (
+  'base': map-get($role-typo-line-heights, '1.5'),
+  'heading1': map-get($role-typo-line-heights, '1.2'),
+  'heading2': map-get($role-typo-line-heights, '1.3')
+);
+
+// -------------------------| Font weights
+$role-typo-font-weights: (
+  'heading': map-get($swatches-typo-font-weights, 'bold')
+);
+
+// -------------------------| Breakpoints
+$role-typography-breakpoints: (
+  's': (
+    'min': map-get($swatches-breakpoints, 'bp-360'),
+    'max': map-get($swatches-breakpoints, 'bp-600') - 1
+  ),
+  'm': (
+    'min': map-get($swatches-breakpoints, 'bp-600'),
+    'max': map-get($swatches-breakpoints, 'bp-1200') - 1
+  ),
+  'l': (
+    'min': map-get($swatches-breakpoints, 'bp-1200'),
+    'max': map-get($swatches-breakpoints, 'bp-2000')
+  )
+);

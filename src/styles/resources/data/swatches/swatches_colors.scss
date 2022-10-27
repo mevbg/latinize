@@ -1,0 +1,25 @@
+// ===================================================|
+// Data > Swatches > COLORS
+
+// -------------------------| Brand
+$swatches-colors-brand: (
+   'dark': #1d3702,
+  'light': #fee673
+);
+
+// -------------------------| Derivatives
+$swatches-colors-derivatives: (
+   'lighter': lighten(map-get($swatches-colors-brand, 'dark'), 12%),
+  'lightest': lighten(map-get($swatches-colors-brand, 'dark'), 50%)
+);
+
+// -------------------------| Mono
+$swatches-colors-mono: (
+       'black': #111,
+  'mine-shaft': #333,
+     'tundora': #444,
+  'dusty-gray': #999,
+        'alto': #ddd,
+     'gallery': #eee,
+       'white': #fefefe
+);

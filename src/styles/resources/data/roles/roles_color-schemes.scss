@@ -1,0 +1,72 @@
+// ===================================================|
+// Data > Roles > COLOR SCHEMES
+
+// -------------------------| Schemes
+$role-color-schemes: (
+
+  // -------------------------| Light
+  'light': (
+    'text': (
+      'base': map-get($swatches-colors-mono, 'black'),
+      'negative': map-get($swatches-colors-mono, 'white'),
+      'negative-highlight': map-get($swatches-colors-brand, 'light'),
+      'placeholder': map-get($swatches-colors-mono, 'dusty-gray'),
+      'highlight': map-get($swatches-colors-brand, 'light')
+    ),
+
+    'background': (
+      'body': map-get($swatches-colors-mono, 'gallery'),
+      'input': map-get($swatches-colors-mono, 'white'),
+      'dark-panel': map-get($swatches-colors-brand, 'dark'),
+      'button': map-get($swatches-colors-brand, 'dark'),
+      'footer': map-get($swatches-colors-brand, 'dark')
+    ),
+
+    'border': (
+      'input': map-get($swatches-colors-mono, 'alto')
+    ),
+
+    'icons': (
+      'info': map-get($swatches-colors-derivatives, 'lighter')
+    ),
+
+    'link': (
+      'normal': '',
+      'hover': '',
+      'active': ''
+    )
+  ),
+
+  // -------------------------| Dark
+  'dark': (
+    'text': (
+      'base': map-get($swatches-colors-mono, 'white'),
+      'negative': map-get($swatches-colors-mono, 'black'),
+      'negative-highlight': map-get($swatches-colors-brand, 'dark'),
+      'placeholder': map-get($swatches-colors-mono, 'dusty-gray'),
+      'highlight': map-get($swatches-colors-brand, 'light'),
+    ),
+
+    'background': (
+      'body': map-get($swatches-colors-mono, 'black'),
+      'input': map-get($swatches-colors-mono, 'mine-shaft'),
+      'dark-panel': map-get($swatches-colors-brand, 'dark'),
+      'button': map-get($swatches-colors-brand, 'dark'),
+      'footer': map-get($swatches-colors-brand, 'light')
+    ),
+
+    'border': (
+      'input': map-get($swatches-colors-mono, 'tundora')
+    ),
+
+    'icons': (
+      'info': map-get($swatches-colors-brand, 'light')
+    ),
+
+    'link': (
+      'normal': '',
+      'hover': '',
+      'active': ''
+    )
+  )
+);

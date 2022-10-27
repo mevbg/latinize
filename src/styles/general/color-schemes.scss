@@ -1,0 +1,22 @@
+// ===================================================|
+// General: COLOR SCHEMES
+
+// -------------------------| Set styles for the default color scheme
+:root {
+  @include set-color-scheme(map-get($color-schemes, 'default'));
+}
+
+// -------------------------| Set styles for all color schemes
+// Only if the toggle is set to true
+@if map-get($color-schemes, 'toggle') {
+  // Loop through all color schemes
+  // and set scoped CSS variables for each scheme,
+  // in both "media query" and "html class" scopes.
+  @for $scheme from 1 through length($role-color-schemes) {
+    $scheme-name: nth(nth($role-color-schemes, $scheme), 1);
+
+    @include color-scheme-scope($scheme-name) {
+      @include set-color-scheme($scheme-name);
+    }
+  }
+}

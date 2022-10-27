@@ -1,0 +1,86 @@
+// ===================================================|
+// General: TYPOGRAPHY
+
+// -------------------------| Modules
+@use 'sass:math';
+@use 'sass:string';
+
+// -------------------------| Variables
+$min-vw: map-get-deep($role-typography-breakpoints, 's', 'min');
+$max-vw: map-get-deep($role-typography-breakpoints, 'l', 'max');
+
+// -------------------------| Functions
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+// -------------------------| HTML
+html {
+  // from 0 up to 359px
+  @media screen and (max-width: #{$min-vw - 1}) {
+    font-size: #{math.div($root-font-size * 100, $min-vw)}vw;
+  }
+
+  @media screen and (min-width: #{$min-vw}) and (max-width: #{$max-vw}) {
+    font-size: string.to-upper-case(#{$root-font-size});
+  }
+
+  // from 2001px up to ∞
+  @media screen and (min-width: #{$max-vw + 1}) {
+    font-size: #{math.div($root-font-size * 100, $max-vw)}vw;
+  }
+}
+
+// -------------------------| Font-sizes
+:root {
+  // from 0 up to 359px
+  @each $prop in $role-typo-font-sizes {
+    @media screen and (max-width: #{$min-vw - 1}) {
+      --typo-font-size-#{nth($prop, 1)}: #{map-get(nth($prop, 2), 's')};
+    }
+  }
+
+  // from 360px up to 2000px
+  @each $size in $role-typography-breakpoints {
+    $max-limit: if(
+      map-has-key(map-get($role-typography-breakpoints, nth($size, 1)), 'max'),
+      " and (max-width: #{map-get-deep($role-typography-breakpoints, nth($size, 1), 'max')})",
+      ''
+    );
+
+    $min-width: map-get-deep(
+      $role-typography-breakpoints,
+      nth($size, 1),
+      'min'
+    );
+
+    $queries: 'screen and (min-width: #{$min-width})' + $max-limit;
+
+    @media #{$queries} {
+      @each $prop in $role-typo-font-sizes {
+        --typo-font-size-#{nth($prop, 1)}: #{map-get(
+            nth($prop, 2),
+            nth($size, 1)
+          )};
+      }
+    }
+  }
+
+  // from 2001px up to ∞
+  @each $prop in $role-typo-font-sizes {
+    @media screen and (min-width: #{$max-vw + 1}) {
+      --typo-font-size-#{nth($prop, 1)}: #{map-get(nth($prop, 2), 'l')};
+    }
+  }
+}
+
+// -------------------------| Line-heights
+:root {
+  @each $prop in $role-typo-line-heights {
+    --typo-line-height-#{nth($prop, 1)}: #{nth($prop, 2)};
+  }
+}

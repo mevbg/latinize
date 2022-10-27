@@ -1,0 +1,40 @@
+// ===================================================|
+// General: SCAFFOLDING
+
+// -------------------------| Root
+:root {
+  @media screen and (max-width: #{map-get($role-layout-gutters-breakpoints, 's') - 1}) {
+    --layout-grid-gutter: #{map-get($role-layout-grid-gutter, 's')};
+  }
+
+  @media screen and (min-width: #{map-get($role-layout-gutters-breakpoints, 's')}) and (max-width: #{map-get($role-layout-gutters-breakpoints, 'm') - 1}) {
+    --layout-grid-gutter: #{map-get($role-layout-grid-gutter, 'm')};
+  }
+
+  @media screen and (min-width: #{map-get($role-layout-gutters-breakpoints, 'm')}) {
+    --layout-grid-gutter: #{map-get($role-layout-grid-gutter, 'l')};
+  }
+}
+
+// -------------------------| Body
+body {
+  color: var(--color-text-base);
+  background-color: var(--color-background-body);
+
+  &,
+  * {
+    @include selection(map-get($swatches-colors-brand, 'light'));
+  }
+}
+
+// -------------------------| App
+[id='app'] {
+  @include font-smoothing();
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: #{map-get($role-typo-font-families, 'base')};
+  font-size: var(--typo-font-size-base);
+  line-height: var(--typo-line-height-base);
+}

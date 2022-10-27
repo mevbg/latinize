@@ -1,0 +1,57 @@
+// ===================================================|
+// Data > Roles > LAYOUT
+
+@use 'sass:math';
+
+// -------------------------| Constraints
+$role-layout-constraints: (
+  'min': map-get($swatches-breakpoints, 'bp-360'),
+  'max': map-get($swatches-breakpoints, 'bp-1600')
+);
+
+// -------------------------| Grid gutter
+$role-layout-grid-gutter: (
+  's': map-get($swatches-spaces, '16'),
+  'm': map-get($swatches-spaces, '20'),
+  'l': map-get($swatches-spaces, '24')
+);
+
+// -------------------------| Content breakpoints
+$role-layout-content-breakpoints: (
+  'columns': map-get($swatches-breakpoints, 'bp-900')
+);
+
+// -------------------------| Gutter breakpoints
+$role-layout-gutters-breakpoints: (
+  's': map-get($swatches-breakpoints, 'bp-600'),
+  'm': map-get($swatches-breakpoints, 'bp-1200'),
+  'l': map-get($swatches-breakpoints, 'bp-1600'),
+  'xl': map-get($swatches-breakpoints, 'bp-2000')
+);
+
+// -------------------------| Outer horizontal gutter
+$role-layout-outer-x-gutter: (
+  's': math.div(((map-get($role-layout-grid-gutter, 's') * 2) * 100), map-get($role-layout-gutters-breakpoints, 's')) * 1%,
+  'm': math.div(((map-get($role-layout-grid-gutter, 'm') * 2) * 100), map-get($role-layout-gutters-breakpoints, 'm')) * 1%,
+  'l': math.div(((map-get($role-layout-grid-gutter, 'l') * 2) * 100), map-get($role-layout-gutters-breakpoints, 'l')) * 1%,
+  'xl': map-get($role-layout-grid-gutter, 'l') * 2
+);
+
+// -------------------------| Outer vertical gutters
+$role-layout-outer-y-gutters: (
+  'top': calc(var(--layout-grid-gutter) * 1.0),
+  'bottom': calc(var(--layout-grid-gutter) * 3.0)
+);
+
+// -------------------------| Inner horizontal gutters
+$role-layout-x-gutters: (
+  'level1': calc(var(--layout-grid-gutter) * 1.0),
+  'level2': calc(var(--layout-grid-gutter) * 0.5)
+);
+
+
+// -------------------------| Inner vertical gutters
+$role-layout-y-gutters: (
+  'level1': calc(var(--layout-grid-gutter) * 1.0),
+  'level2': calc(var(--layout-grid-gutter) * 0.5)
+);

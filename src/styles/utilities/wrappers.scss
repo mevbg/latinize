@@ -1,0 +1,41 @@
+// ===================================================|
+// Utilities: WRAPPERS
+
+// -------------------------| Placeholders
+%ph-wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+%ph-wrapper-layout {
+  @extend %ph-wrapper;
+
+  @include padding-h(var(--layout-outer-x-gutter));
+
+  max-width: map-get($role-layout-constraints, 'max');
+
+  @at-root {
+    :root {
+      @media screen and (max-width: #{map-get($role-layout-gutters-breakpoints, 's') - 1}) {
+        --layout-outer-x-gutter: #{map-get($role-layout-outer-x-gutter, 's')};
+      }
+
+      @media screen and (min-width: #{map-get($role-layout-gutters-breakpoints, 's')}) and (max-width: #{map-get($role-layout-gutters-breakpoints, 'm') - 1}) {
+        --layout-outer-x-gutter: #{map-get($role-layout-outer-x-gutter, 'm')};
+      }
+
+      @media screen and (min-width: #{map-get($role-layout-gutters-breakpoints, 'm')}) and (max-width: #{map-get($role-layout-gutters-breakpoints, 'l') - 1}) {
+        --layout-outer-x-gutter: #{map-get($role-layout-outer-x-gutter, 'l')};
+      }
+
+      @media screen and (min-width: #{map-get($role-layout-gutters-breakpoints, 'l')}) {
+        --layout-outer-x-gutter: #{map-get($role-layout-outer-x-gutter, 'xl')};
+      }
+    }
+  }
+}
+
+// -------------------------| Layout
+.wrp-layout {
+  @extend %ph-wrapper-layout;
+}

@@ -1,0 +1,13 @@
+// ===================================================|
+// Data > Roles > DIMENSIONS
+
+// -------------------------| Exact dimensions
+$role-dimensions: (
+  'logo': 300px,
+  'info-icon': 24px,
+);
+
+// -------------------------| Minimal dimensions
+$role-dimensions-min: (
+  'block': 200px
+);

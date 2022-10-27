@@ -1,0 +1,12 @@
+// ===================================================|
+// Utilities: BACKGROUNDS
+
+// -------------------------| Dark
+.dark {
+  --color-text-negative: #{map-get-deep(
+      $role-color-schemes,
+      'dark',
+      'text',
+      'base'
+    )};
+}

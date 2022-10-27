@@ -1,0 +1,142 @@
+// ===================================================|
+// General: PRESETS
+
+// -------------------------| Box model
+*,
+*::before,
+*::after {
+  box-sizing: border-box; // 1
+}
+
+// -------------------------| Document
+html {
+  // -webkit-locale: 'bg';
+}
+
+body {
+  //
+}
+
+// -------------------------| Text
+p {
+  margin: 0;
+}
+
+strong {
+  //
+}
+
+ol,
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+blockquote {
+  //
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+// -------------------------| Links
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+// -------------------------| Figures
+figure {
+  margin: 0;
+}
+
+// -------------------------| Images
+img {
+  // pointer-events: none;
+}
+
+// -------------------------| Graphics
+svg {
+  overflow: initial; // fix for Safari where part of the graphics is being cropped in the bottom
+}
+
+// -------------------------| Form elements
+fieldset {
+  //
+}
+
+[type='checkbox'],
+[type='radio'] {
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // width: 0;
+  // height: 0;
+  // opacity: 0;
+}
+
+input,
+textarea,
+button {
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  appearance: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+/* stylelint-disable */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button,
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  // -webkit-appearance: none;
+  // margin: 0;
+}
+
+// Mozilla specific
+input[type='number'] {
+  // -moz-appearance: textfield !important;
+}
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  // -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+input[type='file'] {
+  // position: absolute;
+  // z-index: -1;
+  // opacity: 0;
+}
+/* stylelint-enable */
+
+// -------------------------| States
+:focus {
+  outline: none;
+}

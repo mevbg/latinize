@@ -1,0 +1,30 @@
+// ===================================================|
+// Data > Roles > DEVICES
+
+// -------------------------| Devices
+$role-devices: (
+  'phone' (
+    'min': map-get($swatches-breakpoints, 'bp-360'),
+    'max': map-get($swatches-breakpoints, 'bp-600') - 1
+  )
+  'tablet' (
+    'min': map-get($swatches-breakpoints, 'bp-600'),
+    'mid': map-get($swatches-breakpoints, 'bp-900'),
+    'max': map-get($swatches-breakpoints, 'bp-1200') - 1
+  )
+  'laptop' (
+    'min': map-get($swatches-breakpoints, 'bp-1200'),
+    'max': map-get($swatches-breakpoints, 'bp-1600') - 1
+  )
+  'desktop' (
+    'min': map-get($swatches-breakpoints, 'bp-1600'),
+    'max': map-get($swatches-breakpoints, 'bp-2000')
+  )
+);
+
+// -------------------------| Breakpoints
+$role-devices-breakpoints: (
+  'phone-tablet': map-get($swatches-breakpoints, 'bp-600'),
+  'tablet-laptop': map-get($swatches-breakpoints, 'bp-1200'),
+  'laptop-desktop': map-get($swatches-breakpoints, 'bp-1600')
+);

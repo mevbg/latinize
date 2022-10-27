@@ -1,0 +1,7 @@
+// ===================================================|
+// Data > Roles > RATIOS
+
+$role-ratios: (
+  'cover': map-get($swatches-ratios, '16:9'),
+  'thumb': map-get($swatches-ratios, '16:9')
+);
