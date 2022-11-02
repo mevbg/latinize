@@ -45,6 +45,17 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[name].[ext]'
+            }
+          }
+        ]
+      },
+      {
         test: /\.svg$/,
         use: [
           {
@@ -150,7 +161,35 @@ const config = {
     new HtmlWebpackPlugin({
       templateParameters: pkg,
       template: './src/index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      meta: {
+        description: { name: 'description', content: pkg.description },
+        // keyword: { name: 'keywords', content: '...' },
+        'og:title': { property: 'og:title', content: pkg.title },
+        'og:description': {
+          property: 'og:description',
+          content: pkg.description
+        },
+        'og:type': { property: 'og:type', content: 'website' },
+        'og:url': { property: 'og:url', content: pkg.homepage },
+        'og:image': {
+          property: 'og:image',
+          content: `${pkg.homepage}/assets/cover.png`
+        },
+        'twitter:card': {
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        },
+        'twitter:title': { name: 'twitter:title', content: pkg.title },
+        'twitter:description': {
+          name: 'twitter:description',
+          content: pkg.description
+        },
+        'twitter:image': {
+          name: 'twitter:image',
+          content: `${pkg.homepage}/assets/cover.png`
+        }
+      }
     }),
     new FaviconsWebpackPlugin({
       logo: 'src/assets/icon.svg',
