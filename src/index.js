@@ -2,6 +2,9 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { getGlobalComponents } from './configs/global-vue-components.js';
 
+// Images
+import '@/assets/cover.png';
+
 // Styles
 import 'normalize.css/normalize.css';
 import '@/styles/general/color-schemes.scss';
