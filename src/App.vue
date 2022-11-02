@@ -146,6 +146,7 @@ export default {
   bottom: map-get($role-layout-y-gutters, 'level2');
   left: $offset;
   font-size: 0.9em;
+  color: var(--color-text-base);
   background-color: map-get($swatches-colors-brand, 'light');
   border-radius: map-get($role-borders-radiuses, 'block');
 
