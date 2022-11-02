@@ -201,7 +201,7 @@ const config = {
         developerURL: pkg.author.url,
         background: '#fff',
         theme_color: '#1d3702',
-        appleStatusBarStyle: 'black-translucent',
+        appleStatusBarStyle: 'black',
         icons: {
           android: { offset: 10 },
           appleIcon: { offset: 10 },
