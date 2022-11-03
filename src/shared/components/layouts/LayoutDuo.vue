@@ -70,4 +70,8 @@ export default {};
   }
 }
 </style>
-<style src="@/styles/utilities/wrappers.scss" module="$wrappers" lang="scss" />
+<style
+  src="@/shared/styles/utilities/wrappers.scss"
+  module="$wrappers"
+  lang="scss"
+/>

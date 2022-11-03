@@ -1,5 +1,8 @@
 import highlightWords from 'highlight-words';
-import { LOOKALIKE_GRAPHEMES, LATIN_LOOKALIKE_GRAPHEMES } from '@/constants';
+import {
+  LOOKALIKE_GRAPHEMES,
+  LATIN_LOOKALIKE_GRAPHEMES
+} from '@/shared/constants';
 
 export default {
   computed: {

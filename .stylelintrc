@@ -2,7 +2,7 @@
   "ignoreFiles": [
     "./dist/**/*.css",
     "./node_modules/**/*.scss",
-    "./src/styles/resources/data/**/*.scss"
+    "./src/shared/styles/resources/data/**/*.scss"
   ],
   "extends": [
     "stylelint-config-recommended-scss",

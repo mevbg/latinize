@@ -22,7 +22,7 @@ const output_dir_name = path.join(__dirname, 'dist');
 const config = {
   name: pkg.name,
 
-  entry: path.join(__dirname, 'src/index.js'),
+  entry: path.join(__dirname, 'src/app/index.js'),
 
   output: {
     path: output_dir_name,
@@ -140,7 +140,7 @@ const config = {
                 'data/roles/index.scss',
                 'mixins/**/*.scss',
                 'placeholders/**/*.scss'
-              ].map((res) => `src/styles/resources/${res}`)
+              ].map((res) => `src/shared/styles/resources/${res}`)
             }
           }
         ]
@@ -160,7 +160,7 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       templateParameters: pkg,
-      template: './src/index.html',
+      template: './src/app/index.html',
       filename: 'index.html',
       meta: {
         description: { name: 'description', content: pkg.description },
@@ -192,7 +192,7 @@ const config = {
       }
     }),
     new FaviconsWebpackPlugin({
-      logo: 'src/assets/icon.svg',
+      logo: 'src/shared/assets/icon.svg',
       mode: 'webapp',
       favicons: {
         appName: 'latinize.me',

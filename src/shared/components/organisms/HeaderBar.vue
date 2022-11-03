@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import color_schemes_constants from '@/configs/color-schemes';
+import color_schemes_constants from '@/shared/configs/color-schemes';
 const color_schemes = color_schemes_constants['color-schemes'];
-import Logo from '@/assets/logo.svg';
-import Info from '@/components/organisms/Info';
+import Logo from '@/shared/assets/logo.svg';
+import Info from '@/shared/components/organisms/Info';
 
 export default {
   components: {

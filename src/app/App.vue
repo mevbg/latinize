@@ -46,14 +46,14 @@
 </template>
 
 <script>
-import HeaderBar from '@/components/organisms/HeaderBar';
-import FooterBar from '@/components/organisms/FooterBar';
-import latinizerMixin from '@/latinizer.js';
+import HeaderBar from '@/shared/components/organisms/HeaderBar';
+// import FooterBar from '@/shared/components/organisms/FooterBar';
+import latinizerMixin from '@/shared/latinizer.js';
 
 export default {
   components: {
-    HeaderBar,
-    FooterBar
+    HeaderBar
+    // FooterBar
   },
 
   mixins: [latinizerMixin],
@@ -170,4 +170,8 @@ export default {
   }
 }
 </style>
-<style src="@/styles/utilities/wrappers.scss" module="$wrappers" lang="scss" />
+<style
+  src="@/shared/styles/utilities/wrappers.scss"
+  module="$wrappers"
+  lang="scss"
+/>

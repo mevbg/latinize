@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import info_content from '@/content/info.js';
-import latinizerMixin from '@/latinizer.js';
+import info_content from '@/shared/content/info.js';
+import latinizerMixin from '@/shared/latinizer.js';
 
 export default {
   mixins: [latinizerMixin],
@@ -122,12 +122,12 @@ export default {
 }
 </style>
 <style
-  src="@/styles/utilities/wrappers.scss"
+  src="@/shared/styles/utilities/wrappers.scss"
   module="$wrappers"
   lang="scss"
 ></style>
 <style
-  src="@/styles/utilities/backgrounds.scss"
+  src="@/shared/styles/utilities/backgrounds.scss"
   module="$backgrounds"
   lang="scss"
 ></style>

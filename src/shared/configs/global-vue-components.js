@@ -6,14 +6,22 @@ const global_components = {};
 export const getGlobalComponents = () => {
   const categories = {
     layouts: require.context(
-      '@/components/layouts',
+      '@/shared/components/layouts',
       true,
       /[A-Z]\w+\.(vue|js)$/
     ),
-    panels: require.context('@/components/panels', true, /[A-Z]\w+\.(vue|js)$/),
-    atoms: require.context('@/components/atoms', true, /[A-Z]\w+\.(vue|js)$/),
+    panels: require.context(
+      '@/shared/components/panels',
+      true,
+      /[A-Z]\w+\.(vue|js)$/
+    ),
+    atoms: require.context(
+      '@/shared/components/atoms',
+      true,
+      /[A-Z]\w+\.(vue|js)$/
+    ),
     molecules: require.context(
-      '@/components/molecules',
+      '@/shared/components/molecules',
       true,
       /[A-Z]\w+\.(vue|js)$/
     )
