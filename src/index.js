@@ -1,16 +1,17 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { getGlobalComponents } from '@/shared/configs/global-vue-components.js';
+import { getGlobalComponents } from '@/configs/global-vue-components.js';
 
 // Images
-import '@/shared/assets/cover.png';
+import '@/assets/icon.png';
+import '@/assets/cover.png';
 
 // Styles
 import 'normalize.css/normalize.css';
-import '@/shared/styles/general/color-schemes.scss';
-import '@/shared/styles/general/typography.scss';
-import '@/shared/styles/general/presets.scss';
-import '@/shared/styles/general/scaffolding.scss';
+import '@/styles/general/color-schemes.scss';
+import '@/styles/general/typography.scss';
+import '@/styles/general/presets.scss';
+import '@/styles/general/scaffolding.scss';
 
 // Create app instance
 const app_instance = createApp(App);

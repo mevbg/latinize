@@ -1,4 +1,4 @@
-const typography = require('./src/shared/configs/typography');
+const typography = require('./src/configs/typography');
 
 const plugins = [
   // create smooth linear-gradients that approximate easing functions

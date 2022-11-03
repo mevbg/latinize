@@ -8,6 +8,8 @@
     <title><%= description %> • <%= title %></title>
     <link rel="stylesheet" type="text/css"
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;display=swap">
+      
+    <% if (product === 'website') { %>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W7LEYSNK6T"></script>
     <script>
@@ -17,9 +19,11 @@
 
       gtag('config', 'G-W7LEYSNK6T');
     </script>
+    <% } %>
+
   </head>
 
-  <body>
+  <body <% if (product === 'extension') { %>style="width: 400px; height: 800px;"<% } %>>
     <div id="app" />
   </body>
 

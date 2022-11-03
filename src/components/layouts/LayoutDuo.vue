@@ -71,7 +71,7 @@ export default {};
 }
 </style>
 <style
-  src="@/shared/styles/utilities/wrappers.scss"
+  src="@/styles/utilities/wrappers.scss"
   module="$wrappers"
   lang="scss"
 />

@@ -63,7 +63,7 @@ export default {
 }
 </style>
 <style
-  src="@/shared/styles/utilities/backgrounds.scss"
+  src="@/styles/utilities/backgrounds.scss"
   module="$backgrounds"
   lang="scss"
 ></style>

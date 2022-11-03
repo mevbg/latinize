@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import HeaderBar from '@/shared/components/organisms/HeaderBar';
-// import FooterBar from '@/shared/components/organisms/FooterBar';
-import latinizerMixin from '@/shared/latinizer.js';
+import HeaderBar from '@/components/organisms/HeaderBar';
+// import FooterBar from '@/components/organisms/FooterBar';
+import latinizerMixin from '@/latinizer.js';
 
 export default {
   components: {
@@ -171,7 +171,7 @@ export default {
 }
 </style>
 <style
-  src="@/shared/styles/utilities/wrappers.scss"
+  src="@/styles/utilities/wrappers.scss"
   module="$wrappers"
   lang="scss"
 />

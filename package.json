@@ -7,13 +7,13 @@
   "main": "index.js",
   "scripts": {
     "clean": "del-cli dist",
-    "dev": "NODE_ENV=development webpack-dev-server",
-    "build": "yarn clean && NODE_ENV=production webpack && echo 'latinize.me' > ./dist/CNAME",
+    "dev": "NODE_ENV=development webpack serve",
+    "build": "yarn clean && NODE_ENV=production webpack && echo 'latinize.me' > ./dist/website/CNAME",
     "stylelint": "echo \"\\033[95mLinting styles…\" && stylelint \"**/*.{scss,vue}\" && echo \"\\033[92mNo errors were found in the styles.\" && echo \"\\033[39m\"",
     "eslint": "echo \"\\033[93mLinting scripts…\" && eslint --ext .js,.vue --ignore-path .gitignore . && echo \"\\033[92mNo errors were found in the scripts.\" && echo \"\\033[39m\"",
     "lint": "yarn stylelint && yarn eslint",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist/website"
   },
   "author": {
     "name": "Martin Metodiev",
@@ -48,6 +48,7 @@
     "favicons": "^7.0.2",
     "favicons-webpack-plugin": "^6.0.0-alpha.2",
     "file-loader": "^6.2.0",
+    "generate-json-webpack-plugin": "^2.0.0",
     "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "lint-staged": "^13.0.3",

@@ -3,259 +3,295 @@
 
 // -------------------------| Import
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const Webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const GenerateJsonPlugin = require('generate-json-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const jsonImporter = require('node-sass-json-importer');
+const manifest = require('./src/manifest');
 const pkg = require('./package.json');
 
 // -------------------------| Definitions
 const dev_env = process.env.NODE_ENV === 'development';
-const output_dir_name = path.join(__dirname, 'dist');
 
-// -------------------------| Config
-const config = {
-  name: pkg.name,
+// -------------------------| Configs
+const getProductConfig = (product) => {
+  const output_dir_name = path.join(__dirname, `dist/${product}`);
 
-  entry: path.join(__dirname, 'src/app/index.js'),
+  return {
+    name: pkg.name,
 
-  output: {
-    path: output_dir_name,
-    filename: `${pkg.name}.[chunkhash].js`
-  },
-
-  stats: {
-    loggingDebug: ['sass-loader']
-  },
-
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src')
+    stats: {
+      loggingDebug: ['sass-loader']
     },
-    extensions: ['.js', '.vue', '.json', 'scss']
-  },
 
-  devtool: dev_env ? 'inline-source-map' : false,
+    entry: path.join(__dirname, 'src/index.js'),
 
-  module: {
-    rules: [
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'assets/[name].[ext]'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'vue-loader',
-            options: {
-              customElement: true
-            }
-          },
-          'vue-svg-loader'
-        ]
-      },
-      {
-        test: /\.vue$/i,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'vue-loader'
-        }
-      },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: dev_env
-            }
-          }
-        ]
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: dev_env,
-              modules: {
-                exportLocalsConvention: 'dashes',
-                localIdentName: dev_env
-                  ? '[name]__[local]__[hash:base64:5]'
-                  : '[hash:base64:5]'
-              }
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                config: true
-              },
-              sourceMap: dev_env
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                importer: [jsonImporter()]
-              }
-            }
-          },
-          {
-            loader: 'sass-resources-loader',
-            options: {
-              hoistUseStatements: true,
-              resources: [
-                'functions/**/*.scss',
-                'data/swatches/index.scss',
-                'data/roles/index.scss',
-                'mixins/**/*.scss',
-                'placeholders/**/*.scss'
-              ].map((res) => `src/shared/styles/resources/${res}`)
-            }
-          }
-        ]
-      }
-    ]
-  },
+    output: {
+      path: output_dir_name,
+      filename: `${pkg.name}.[chunkhash].js`
+    },
 
-  plugins: [
-    new VueLoaderPlugin(),
-    new ESLintPlugin(),
-    new StyleLintPlugin({
-      files: ['./**/*.scss', './**/*.vue'],
-      configFile: '.stylelintrc'
-    }),
-    new MiniCssExtractPlugin({
-      filename: `${pkg.name}.[chunkhash].css`
-    }),
-    new HtmlWebpackPlugin({
-      templateParameters: pkg,
-      template: './src/app/index.html',
-      filename: 'index.html',
-      meta: {
-        description: { name: 'description', content: pkg.description },
-        // keyword: { name: 'keywords', content: '...' },
-        'og:title': { property: 'og:title', content: pkg.title },
-        'og:description': {
-          property: 'og:description',
-          content: pkg.description
-        },
-        'og:type': { property: 'og:type', content: 'website' },
-        'og:url': { property: 'og:url', content: pkg.homepage },
-        'og:image': {
-          property: 'og:image',
-          content: `${pkg.homepage}/assets/cover.png`
-        },
-        'twitter:card': {
-          name: 'twitter:card',
-          content: 'summary_large_image'
-        },
-        'twitter:title': { name: 'twitter:title', content: pkg.title },
-        'twitter:description': {
-          name: 'twitter:description',
-          content: pkg.description
-        },
-        'twitter:image': {
-          name: 'twitter:image',
-          content: `${pkg.homepage}/assets/cover.png`
-        }
-      }
-    }),
-    new FaviconsWebpackPlugin({
-      logo: 'src/shared/assets/icon.svg',
-      mode: 'webapp',
-      favicons: {
-        appName: 'latinize.me',
-        appDescription: pkg.description,
-        developerName: pkg.author.name,
-        developerURL: pkg.author.url,
-        background: '#fff',
-        theme_color: '#1d3702',
-        appleStatusBarStyle: 'black',
-        icons: {
-          android: { offset: 10 },
-          appleIcon: { offset: 10 },
-          appleStartup: { offset: 5 },
-          favicons: { offset: 5, background: '#fff' },
-          windows: { offset: 10 },
-          yandex: { offset: 10 }
-        }
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src')
       },
-      inject: (htmlPlugin) =>
-        path.basename(htmlPlugin.options.filename) === 'index.html'
-    })
-  ],
+      extensions: ['.js', '.vue', '.json', 'scss']
+    },
 
-  optimization: {
-    minimize: !dev_env,
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          compress: {
-            drop_debugger: !dev_env,
-            drop_console: !dev_env
-          },
-          output: {
-            comments: false
-          }
-        },
-        extractComments: false
-      }),
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: [
-            'default',
+    devtool: dev_env ? 'inline-source-map' : false,
+
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
             {
-              discardComments: { removeAll: true }
+              loader: 'file-loader',
+              options: {
+                name: 'assets/[name].[ext]'
+              }
+            }
+          ]
+        },
+        {
+          test: /\.svg$/,
+          use: [
+            {
+              loader: 'vue-loader',
+              options: {
+                customElement: true
+              }
+            },
+            'vue-svg-loader'
+          ]
+        },
+        {
+          test: /\.vue$/i,
+          exclude: /(node_modules)/,
+          use: {
+            loader: 'vue-loader'
+          }
+        },
+        {
+          test: /\.js$/,
+          exclude: /(node_modules)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        },
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: dev_env
+              }
+            }
+          ]
+        },
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: dev_env,
+                modules: {
+                  exportLocalsConvention: 'dashes',
+                  localIdentName: dev_env
+                    ? '[name]__[local]__[hash:base64:5]'
+                    : '[hash:base64:5]'
+                }
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  config: true
+                },
+                sourceMap: dev_env
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sassOptions: {
+                  importer: [jsonImporter()]
+                }
+              }
+            },
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                hoistUseStatements: true,
+                resources: [
+                  'functions/**/*.scss',
+                  'data/swatches/index.scss',
+                  'data/roles/index.scss',
+                  'mixins/**/*.scss',
+                  'placeholders/**/*.scss'
+                ].map((res) => `src/styles/resources/${res}`)
+              }
             }
           ]
         }
-      })
-    ]
-  },
+      ]
+    },
 
-  devServer: {
-    historyApiFallback: true,
-    static: {
-      directory: 'dist'
+    plugins: [
+      new Webpack.DefinePlugin({
+        __VUE_OPTIONS_API__: true,
+        __VUE_PROD_DEVTOOLS__: true
+      }),
+      new VueLoaderPlugin(),
+      new ESLintPlugin(),
+      new StyleLintPlugin({
+        files: ['./**/*.scss', './**/*.vue'],
+        configFile: '.stylelintrc'
+      }),
+      new MiniCssExtractPlugin({
+        filename: `${pkg.name}.[chunkhash].css`
+      }),
+      new HtmlWebpackPlugin({
+        templateParameters: {
+          ...pkg,
+          product
+        },
+        template: './src/index.html',
+        filename: 'index.html',
+        meta:
+          product === 'website'
+            ? {
+                description: { name: 'description', content: pkg.description },
+                // keyword: { name: 'keywords', content: '...' },
+                'og:title': { property: 'og:title', content: pkg.title },
+                'og:description': {
+                  property: 'og:description',
+                  content: pkg.description
+                },
+                'og:type': { property: 'og:type', content: 'website' },
+                'og:url': { property: 'og:url', content: pkg.homepage },
+                'og:image': {
+                  property: 'og:image',
+                  content: `${pkg.homepage}/assets/cover.png`
+                },
+                'twitter:card': {
+                  name: 'twitter:card',
+                  content: 'summary_large_image'
+                },
+                'twitter:title': { name: 'twitter:title', content: pkg.title },
+                'twitter:description': {
+                  name: 'twitter:description',
+                  content: pkg.description
+                },
+                'twitter:image': {
+                  name: 'twitter:image',
+                  content: `${pkg.homepage}/assets/cover.png`
+                }
+              }
+            : false,
+        minify: {
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false
+        }
+      }),
+      ...(product === 'extension'
+        ? [
+            new GenerateJsonPlugin('manifest.json', {
+              ...manifest
+            })
+          ]
+        : [
+            new FaviconsWebpackPlugin({
+              logo: 'src/assets/icon.svg',
+              mode: 'webapp',
+              favicons: {
+                appName: 'latinize.me',
+                appDescription: pkg.description,
+                developerName: pkg.author.name,
+                developerURL: pkg.author.url,
+                background: '#fff',
+                theme_color: '#1d3702',
+                appleStatusBarStyle: 'black',
+                icons: {
+                  android: { offset: 10 },
+                  appleIcon: { offset: 10 },
+                  appleStartup: { offset: 5 },
+                  favicons: { offset: 5, background: '#fff' },
+                  windows: { offset: 10 },
+                  yandex: { offset: 10 }
+                }
+              },
+              inject: (htmlPlugin) =>
+                path.basename(htmlPlugin.options.filename) === 'index.html'
+            })
+          ])
+    ],
+
+    optimization: {
+      minimize: !dev_env,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              drop_debugger: !dev_env,
+              drop_console: !dev_env
+            },
+            output: {
+              comments: false
+            }
+          },
+          extractComments: false
+        }),
+        new CssMinimizerPlugin({
+          minimizerOptions: {
+            preset: [
+              'default',
+              {
+                discardComments: { removeAll: true }
+              }
+            ]
+          }
+        })
+      ]
     },
-    devMiddleware: {
-      writeToDisk: false
-    },
-    compress: false,
-    port: 'auto'
-  }
+
+    devServer:
+      product === 'website'
+        ? {
+            historyApiFallback: true,
+            static: {
+              directory: 'dist/website'
+            },
+            devMiddleware: {
+              writeToDisk: true
+            },
+            compress: false,
+            port: 'auto'
+          }
+        : undefined
+  };
 };
 
 // -------------------------| Export
-module.exports = config;
+module.exports = ['website', 'extension'].map((product) =>
+  getProductConfig(product)
+);
