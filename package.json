@@ -3,7 +3,7 @@
   "title": "Лamuнuзupaй мe!",
   "description": "Кupuлuцa, нanpaвeнa om лamuнcku гpaфeмu",
   "homepage": "https://latinize.me",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "scripts": {
     "clean": "del-cli dist",
