@@ -64,12 +64,8 @@ const getProductConfig = (product) => {
           test: /\.svg$/,
           use: [
             {
-              loader: 'vue-loader',
-              options: {
-                customElement: true
-              }
-            },
-            'vue-svg-loader'
+              loader: 'svg-vue3-loader'
+            }
           ]
         },
         {
