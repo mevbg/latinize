@@ -1,0 +1,1 @@
+# This is the directory where all atom components should be placed
