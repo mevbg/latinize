@@ -1,8 +1,8 @@
 {
-  "name": "latinize.me",
+  "name": "latinize",
   "title": "Лamuнuзupaй мe!",
   "description": "Кupuлuцa, нanpaвeнa om лamuнcku гpaфeмu",
-  "homepage": "https://latinize.me",
+  "homepage": "https://latinize.mev.bg",
   "version": "1.0.3",
   "main": "index.js",
   "scripts": {

@@ -220,7 +220,7 @@ const getProductConfig = (product) => {
               logo: 'src/assets/icon.svg',
               mode: 'webapp',
               favicons: {
-                appName: 'latinize.me',
+                appName: 'Latinize',
                 appDescription: pkg.description,
                 developerName: pkg.author.name,
                 developerURL: pkg.author.url,
